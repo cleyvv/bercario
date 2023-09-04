@@ -10,6 +10,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Mom{
-  
+model Bercario{
+  bebes Bebes[]?
+  maes Mae[]?
+  id Int @id @default(autoincrement()) 
+  medicos Medico[]?
 }
+
+model Mae{
+  cpf @unique
+  nome String
+  endereco string
+  telefone int
+  dataNascimento date
+  filhos Bebe[]
+}
+
+model Bebe{
+  cpf @unique
+  nome String
+  dataNascimento date
+  peso float
+  altura float
+  mae Mae
+  bercario Bercario
+}
+
+model Medico{
+  id Int @id @default(autoincrement())
+  nome String
+  crm Int
+  telefoneCelular Int
+  especialidade String
+  bercarios Bercario[]
+  }
