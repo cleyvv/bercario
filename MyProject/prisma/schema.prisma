@@ -12,24 +12,23 @@ datasource db {
 
 model Bercario{
   bebes Bebes[]?
-  maes Mae[]?
-  id Int @id @default(autoincrement()) 
+  id Int @id @unique @default(autoincrement()) 
   medicos Medico[]?
 }
 
 model Mae{
-  cpf @unique
+  cpf Int @unique
   nome String
   endereco string
-  telefone int
-  dataNascimento date
-  filhos Bebe[]
+  telefone Int
+  dataNasc date
+  bebes Bebe[]
 }
 
 model Bebe{
-  cpf @unique
+  cpf Int @unique
   nome String
-  dataNascimento date
+  dataNasc date
   peso float
   altura float
   mae Mae
@@ -37,7 +36,7 @@ model Bebe{
 }
 
 model Medico{
-  id Int @id @default(autoincrement())
+  id Int @id @unique @default(autoincrement())
   nome String
   crm Int
   telefoneCelular Int
